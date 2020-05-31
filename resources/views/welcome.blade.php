@@ -14,29 +14,28 @@
     </head>
     <body>
         <div class="container d-flex flex-column">
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center dev-height">
                 <div class="col-md-12">
-                    <ul class="nav nav-tabs" id="citiesTabs" role="tablist">
-                    </ul>
-                    <div class="tab-content" id="citiesContent">
-                    </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist"></ul>
+                    <div class="tab-content" id="myTabContent"></div>
                 </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center justify-content-center">
                 <div class="col-md-4">
-                <form class="form-signin">
+                    <form id="form" class="form">
 
-                    <div class="input-group">
-                        <input type="text" id="token" class="form-control mb-2" placeholder="API key" required autofocus>
-                    </div>
-
-                    <div class="input-group">
-                        <input type="text" id="city" class="form-control" placeholder="City" required>
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">Submit</button>
+                        <div class="input-group">
+                            <input type="text" id="token" name="token" class="form-control mb-2" placeholder="API key" required autofocus>
                         </div>
-                    </div>
-                </form>
+
+                        <div class="input-group">
+                            <input type="text" id="city" name="city" class="form-control" placeholder="City" required>
+                            <div class="input-group-append">
+                                <button id="formSubmitButton" class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
