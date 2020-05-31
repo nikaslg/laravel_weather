@@ -15,8 +15,8 @@
 - [x] Laravel setup
     - [x] Setup bootstrap
     - [x] Setup Jquery
-    - [ ] Setup live reload
-    - [ ] Setup sass compiler
+    - [x] Setup live reload
+    - [x] Setup sass compiler
     - [ ] Endpoints
       - [ ] / - Home endpoint for main form and tabs
       - [ ] /api/getweather?api=x?city=x - for weather
