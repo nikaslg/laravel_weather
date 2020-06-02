@@ -2,16 +2,18 @@
 
 # Task
 
-- [ ] Frontend elements
-  - [ ] Form
-    - [ ] Token (Have to be the first field)
-    - [ ] City input
-    - [ ] Submit button 
-      - [ ] Green submit button on the right side of the field
-    - [ ] Tabs
+- [x] Frontend elements
+  - [x] Form
+    - [x] Token (Have to be the first field)
+    - [x] City input
+    - [x] Submit button 
+      - [x] Green submit button on the right side of the field
+    - [x] Tabs
 - [ ] Javascript
-  - [ ] Form prevent default and ajax logic
-  - [ ] Tabs functionality to add extra fields on new city addition.
+  - [x] Form prevent default and ajax logic
+  - [x] Tabs functionality to add extra fields on new city addition.
+  - [ ] Error message on failed attempt
+  - [ ] 
 - [x] Laravel setup
     - [x] Setup bootstrap
     - [x] Setup Jquery

@@ -17,7 +17,5 @@ use Illuminate\Support\Facades\Http;
 
 Route::get('getweather/', function(Request $request){
 
-    //return $request;
-
     return Http::get("api.openweathermap.org/data/2.5/weather?q=vilnius&appid=eefbba8fd82b69509fc1f1785da6ca91");
 });
