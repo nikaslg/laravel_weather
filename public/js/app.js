@@ -38959,7 +38959,8 @@ $(document).ready(function () {
   var tabHead = $('#myTab');
   var tabContent = $('#myTabContent');
   var $tabId = 0;
-  var currentCities = []; //Form validator rules for compatability with bootstrap
+  var currentCities = [];
+  var errorMessage = 'Invalid input, check your api key and city for typos.'; //Form validator rules for compatability with bootstrap
 
   jQuery.validator.setDefaults({
     highlight: function highlight(element) {
@@ -38979,7 +38980,7 @@ $(document).ready(function () {
     }
   });
   jQuery.validator.addMethod("unique", function (value, element) {
-    return $.inArray(value.toLowerCase(), currentCities);
+    return $.inArray(value.toLowerCase(), currentCities) === -1;
   }, "City already in the list"); //Set form input validation rules
 
   form.validate({
@@ -39000,6 +39001,9 @@ $(document).ready(function () {
     submitHandler: function submitHandler() {
       //Ajax call to the backend.
       $.ajax({
+        headers: {
+          Accept: "application/json"
+        },
         url: url,
         method: "GET",
         data: {
@@ -39007,17 +39011,19 @@ $(document).ready(function () {
           city: city[0].value.toLowerCase()
         },
         success: function success(response) {
-          console.log(JSON.parse(response).name); //Covert response to javascript object.
+          if (response.code !== 200) {
+            printError(response.data.message);
+            return false;
+          }
 
-          var data = JSON.stringify(response); //Pass data to new tab.
+          ; //Pass data to new tab.
 
-          populateTabs(JSON.parse(response).name, data); //Add new city to cities list so we could filter out dublicates.
+          populateTabs(response.city, response); //Add new city to cities list so we could filter out dublicates.
 
           currentCities.push(city[0].value.toLowerCase());
         },
         error: function error(response) {
-          //ToDo error message in the frontend.
-          console.log(response);
+          printError(response.message);
         }
       }); //Validation plugin doesn't pass event so we use false as a measure to prevent form submission.
 
@@ -39029,16 +39035,23 @@ $(document).ready(function () {
     //Create new tab
     tabHead.append('<li class="nav-item"><a class="nav-link" href="#tab' + $tabId + '">' + city + '</a></li>'); //Create tab content pane
 
-    tabContent.append('<div class="tab-pane fade" id="tab' + $tabId + '">' + data + '</div>'); //Activate new tab
-
-    $('#tab' + $tabId).tab('show'); //Used for unique tab naming
-
-    $tabId++; //Initiate tab event everytime we add new element.
+    tabContent.append('<div class="tab-pane fade" id="tab' + $tabId + '"><h6>' + data.city + '</h6><p>Temperature: ' + data.main.temp + '</p><br><p>Weather ' + data.weather.main + '</p></div>'); //Initiate tab event everytime we add new element.
 
     $('#myTab a').on('click', function (e) {
       e.preventDefault();
       $(this).tab('show');
-    });
+    }); //Activate new tab
+
+    $('#myTab a[href="#tab' + $tabId + '"]').tab('show'); //Used for unique tab naming
+
+    $tabId++;
+  }
+
+  function printError() {
+    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : errorMessage;
+    var errorMsgSelector = $('#error-msg');
+    errorMsgSelector.html(message);
+    errorMsgSelector.removeClass('collapse');
   }
 });
 

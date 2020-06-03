@@ -40,15 +40,8 @@ class WeatherTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonStructure([
-                'data' => [
                     'weather',
                     'main',
-                    'wind',
-                    'clouds',
-                    'dt',
-                    'sys',
-                    'timezone'
-                ]
             ]);
     }
 
@@ -63,11 +56,9 @@ class WeatherTest extends TestCase
         $response
             ->assertStatus(404)
             ->assertJsonStructure([
-                'data' => [
                     'message'
-                ]
             ])->assertJsonFragment(['message' => 'city not found']);
     }
 
-    
+
 }

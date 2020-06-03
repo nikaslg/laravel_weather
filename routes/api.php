@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\WeatherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,4 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('getweather/', function(Request $request){
-
-    return Http::get("api.openweathermap.org/data/2.5/weather?q=vilnius&appid=eefbba8fd82b69509fc1f1785da6ca91");
-});
+Route::get('getweather/', 'WeatherController@getWeather');

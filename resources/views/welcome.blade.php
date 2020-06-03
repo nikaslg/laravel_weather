@@ -14,9 +14,22 @@
     </head>
     <body>
         <div class="container d-flex flex-column">
+            <div class="error-msg-container row">
+                <div class="col-md-12">
+                    <div id="error-msg" class="alert alert-danger alert-dismissible collapse" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="row justify-content-md-center dev-height">
                 <div class="col-md-12">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist"></ul>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Cities</a>
+                        </li>
+                    </ul>
                     <div class="tab-content" id="myTabContent"></div>
                 </div>
             </div>
